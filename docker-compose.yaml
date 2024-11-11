@@ -1,0 +1,22 @@
+services:
+  postgres:
+    container_name: software-testing-postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: amigoscode
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - software-testing-volume:/data/postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - software-testing-network
+    restart: unless-stopped
+
+networks:
+    software-testing-network:
+        driver: bridge
+
+volumes:
+    software-testing-volume:
